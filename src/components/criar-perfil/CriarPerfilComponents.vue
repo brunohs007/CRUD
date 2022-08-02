@@ -27,7 +27,7 @@
             <input type="date" class="form-control" placeholder="YYYY/MM/DD" v-model="perfil.data">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="margin-top: 15px">
             <button type="submit" class=" btn btn-primary">Entrar</button>
           </div>
         </form>

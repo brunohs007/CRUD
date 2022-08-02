@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <!-- inicio navbar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand order-md-last">CRUD Vue.js </a>
