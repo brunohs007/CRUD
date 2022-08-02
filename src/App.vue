@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- inicio navbar -->
-    <nav class="nav navbar-expand-lg bg-dark navbar-dark">
+    <nav class="nav navbar-expand-sm bg-dark navbar-dark">
       <div class="container">
         <a class="navbar-brand order-md-last">CRUD Vue.js </a>
         <ul class="navbar-nav mr-auto">
