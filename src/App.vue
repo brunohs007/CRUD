@@ -1,30 +1,25 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <!-- inicio navbar -->
+    <nav class="nav navbar-expand-lg bg-dark navbar-dark">
+      <div class="container">
+        <a class="navbar-brand order-md-last">CRUD Vue.js </a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">Criar novo Perfil</router-link>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/listar-perfil">Listar todos os Perfis</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- fim navbar -->
+    <div class="container">
+      <router-view/>
+    </div>
+  </div>
+
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
