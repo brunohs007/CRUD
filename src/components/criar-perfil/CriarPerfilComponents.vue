@@ -28,7 +28,9 @@
           </div>
 
           <div class="form-group" style="margin-top: 15px">
-            <button type="submit" class=" btn btn-primary">Entrar</button>
+            <button class=" btn btn-primary">
+              <font-awesome-icon :icon="['fas', 'user-plus']" /> Entrar
+            </button>
           </div>
         </form>
       </div>
