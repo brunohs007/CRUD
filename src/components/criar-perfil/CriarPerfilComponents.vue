@@ -9,34 +9,22 @@
 
           <div class="form-group">
             <label class="font-weight-bold">Nome</label>
-            <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome" v-model="perfil.nome" :class="{'is-invalid': isSubitted && $v.perfil.nome.$error }">
-          </div>
-          <div v-if="isSubitted && !$v.perfil.nome.required" class="invalid-feedback">
-              Campo Nome é necessario!
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome" v-model="state.nome">
           </div>
 
           <div class="form-group">
             <label class="font-weight-bold">Email</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Digite seu email" v-model="perfil.email">
-          </div>
-          <div v-if="isSubitted && !$v.perfil.email.required" class="invalid-feedback">
-            Campo Email é necessario!
+            <input type="email" class="form-control" placeholder="Digite seu email" v-model="state.email">
           </div>
 
           <div class="form-group">
             <label class="font-weight-bold" for="inputPassword4">Senha</label>
-            <input type="password" name="senha" class="form-control" id="inputPassword4" placeholder="Senha" v-model="perfil.senha">
-          </div>
-          <div v-if="isSubitted && !$v.perfil.senha.required" class="invalid-feedback">
-            Campo Senha é necessario!
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Senha" v-model="state.senha">
           </div>
 
           <div class="form-group">
             <label class="font-weight-bold">Data de nascimento</label>
-            <input type="date" id="data" name="data" class="form-control" placeholder="YYYY/MM/DD" v-model="perfil.data">
-          </div>
-          <div v-if="isSubitted && !$v.perfil.data.required" class="invalid-feedback">
-            Campo Data é necessario!
+            <input type="date" class="form-control" placeholder="YYYY/MM/DD" v-model="state.data">
           </div>
 
           <div class="form-group" style="margin-top: 15px">
@@ -50,33 +38,39 @@
 
 <script>
 
-import { required, email } from 'vuelidate/lib/validators';
+import useVuelidate from '@vuelidate/core'
+import { required} from '@vuelidate/validators'
+import { reactive, computed } from 'vue'
 
 export default {
-   name: 'CriarPerfilComponents',
-  data() {
-    return {
-      perfil: {
-        nome: '',
-        email: '',
-        senha: '',
-        data: '',
-      },
-      isSubitted: false,
-    };
-  },
-  validations: {
-    perfil: {
-      nome: {required},
-      email: {required},
-      senha: {required},
-      data: {required},
-    }
+  setup () {
+    const state = reactive({
+      nome: '',
+      email: '',
+      senha: '',
+      data: '',
+    })
+
+    const rules = computed(() => {
+      return {
+        nome: {required},
+        email: {required},
+        senha: {required},
+        data: {required},
+      }
+    })
+    const v$ = useVuelidate(rules, state)
+    return { state, v$ }
   },
   methods: {
     EnviarFormulario() {
-
+      this.v$.$validate()
+      if (!this.v$.$error){
+        alert('Formulario enviado com sucesso!')
+      }else {
+        alert('Falha no envio do formulario!')
+      }
     },
   },
-};
+}
 </script>
