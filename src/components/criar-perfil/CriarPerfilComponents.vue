@@ -39,7 +39,7 @@
 <script>
 
 import useVuelidate from '@vuelidate/core'
-import { required} from '@vuelidate/validators'
+import { required, email, minLength, sameAs} from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
 
 export default {
@@ -54,8 +54,8 @@ export default {
     const rules = computed(() => {
       return {
         nome: {required},
-        email: {required},
-        senha: {required},
+        email: {required, email},
+        senha: {required, minLength: minLength(6)},
         data: {required},
       }
     })
