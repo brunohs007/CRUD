@@ -4,17 +4,17 @@ import NProgress from 'nprogress';
 const routes = [
   {
     path: '/',
-    name: 'Criar Perfil',
+    name: 'principal',
     component: () => import('../components/criar-perfil/CriarPerfilComponents')
   },
   {
     path: '/listar-perfil',
-    name: 'Listar Perfis',
+    name: 'lista',
     component: () => import('../components/listar-perfil/ListarPerfilComponents')
   },
   {
     path: '/editar-perfil/:id',
-    name: 'Editar Perfis',
+    name: 'editar',
     component: () => import('../components/editar-perfil/EditarPerfilComponents')
   }
 ]

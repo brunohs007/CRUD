@@ -28,8 +28,8 @@
           </div>
 
           <div class="form-group" style="margin-top: 15px">
-            <button class=" btn btn-primary">
-              <font-awesome-icon :icon="['fas', 'user-plus']" /> Entrar
+            <button @click="novoPerfil" class=" btn btn-primary">
+              <font-awesome-icon :icon="['fas', 'user-plus']" /> Criar novo perfil
             </button>
           </div>
         </form>
@@ -43,22 +43,25 @@
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, sameAs} from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
+import perfilServices from '@/services/PerfilServices';
 
 export default {
   setup () {
     const state = reactive({
-      nome: '',
-      email: '',
-      senha: '',
-      data: '',
+      nome: null,
+      email: null,
+      senha: null,
+      data: null,
     })
 
     const rules = computed(() => {
       return {
-        nome: {required},
-        email: {required, email},
-        senha: {required, minLength: minLength(6)},
-        data: {required},
+        perfilForm: {
+          nome: {required},
+          email: {required, email},
+          senha: {required, minLength: minLength(6)},
+          data: {required},
+        }
       }
     })
     const v$ = useVuelidate(rules, state)
@@ -73,6 +76,16 @@ export default {
         alert('Falha no envio do formulario!')
       }
     },
+    async novoPerfil() {
+      try {
+        await perfilServices.criarPerfil(this.perfilForm);
+        this.$router.push({
+          name: 'lista',
+        })
+      } catch (error) {
+          console.log(error)
+      }
+    }
   },
 }
 </script>
